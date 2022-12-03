@@ -1,0 +1,75 @@
+/*.App {*/
+/*  text-align: center;*/
+/*}*/
+
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.full-screen-height {
+    min-height: 63.2em;
+
+}
+
+.ui.disabled.input {
+    opacity:0.8 !important;
+    border:0 solid lightgray !important;
+    background-color:gray !important;
+    color:white !important;
+    cursor: not-allowed !important;
+}
+
+.ui.input {
+    opacity:1 !important;
+    color:gray !important;
+}
+
+.contentHolder {
+    justify-content: center;
+    display: flex;
+}
+
+.card-style {
+    min-width: 85em !important;
+    margin-top:3em !important;
+}
+
+.card-content {
+    min-height: 8em !important;
+}
+
+.card-content-field {
+    min-height: 5em !important;
+}
+
+.add-report-field-button-div-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.add-report-field-button {
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 0;
+    margin-bottom: 1em !important;
+    margin-top: 2em !important;
+}
+
+
+.save-button {
+    float: right;
+    margin-bottom: 1.5em !important;
+}
+
+.card-header {
+    margin-top:0.5em ;
+    margin-left:0.5em ;
+    margin-right:0.5em ;
+    padding-left:0.5em ;
+}
+
+
+
