@@ -1,90 +1,14 @@
 import {Label} from 'semantic-ui-react'
 import React from "react";
 import {ReportFilterField} from "../../interfaces/reportfilterfield";
-import {Input, Form, Dropdown, Checkbox} from 'formsy-semantic-ui-react';
+import {Form, Dropdown, Checkbox} from 'formsy-semantic-ui-react';
+import {
+  fieldRecordImportSubtypeOptions,
+  fieldRecordImportPriorityOptions,
+  fieldRecordImportCategoriesOptions,
+  fieldRecordImportStatusOptions
+} from "../../api/hardcoded-data/FieldRecordImportInputOptions"
 
-
-const fieldRecordImportSubtypeOptions = [
-    {
-        key: 'issue',
-        text: 'Issue',
-        value: 'issue',
-    },
-    {
-        key: 'note',
-        text: 'Note',
-        value: 'note',
-    },
-    {
-        key: 'checklist',
-        text: 'Checklist',
-        value: 'checklist',
-    }
-]
-
-const fieldRecordImportPriorityOptions = [
-    {
-        key: '1',
-        text: '1',
-        value: '1',
-    },
-    {
-        key: '2',
-        text: '2',
-        value: '2',
-    },
-    {
-        key: '3',
-        text: '3',
-        value: '3',
-    },
-    {
-        key: '4',
-        text: '4',
-        value: '4',
-    },
-    {
-        key: '5',
-        text: '5',
-        value: '5',
-    },
-]
-
-const fieldRecordImportStatusOptions = [
-    {
-        key: 'all',
-        text: 'All',
-        value: 'all',
-    },
-    {
-        key: 'open',
-        text: 'Open',
-        value: 'open',
-    },
-    {
-        key: 'closed',
-        text: 'Closed',
-        value: 'closed',
-    },
-]
-
-const fieldRecordImportCategoriesOptions = [
-    {
-        key: 'health',
-        text: 'Health',
-        value: 'health',
-    },
-    {
-        key: 'security',
-        text: 'Security',
-        value: 'security',
-    },
-    {
-        key: 'catering',
-        text: 'Catering',
-        value: 'catering',
-    },
-]
 
 // @ts-ignore
 interface Props {
@@ -92,7 +16,7 @@ interface Props {
   handleFilterChange: (e: any, data: any) => void;
 }
 
-const FieldFilterableInput: React.FC<Props> = ({
+const FieldRecordImportInput: React.FC<Props> = ({
                                                 field,
                                                 handleFilterChange,
                                               }) => {
@@ -173,4 +97,4 @@ const FieldFilterableInput: React.FC<Props> = ({
     )
 }
 
-export default FieldFilterableInput
+export default FieldRecordImportInput

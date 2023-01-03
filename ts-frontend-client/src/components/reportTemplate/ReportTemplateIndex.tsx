@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Icon, Input, Menu, Table} from 'semantic-ui-react';
 import {Link, useLoaderData} from 'react-router-dom';
 import {ReportTemplate} from "../../interfaces/reporttemplate";
-import {ReportTemplateApiFactory} from "../../api-ts/api/typescript-axios";
+import {ReportTemplateApiFactory} from "../../api/api/typescript-axios";
 
 export async function loader() {
   const result = await ReportTemplateApiFactory().apiReportTemplatesGetCollection();

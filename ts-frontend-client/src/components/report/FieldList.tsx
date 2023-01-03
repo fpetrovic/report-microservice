@@ -1,4 +1,4 @@
-import FieldListItemFactory from './FieldListItemFactory';
+import FieldListItemFactory from './factories/FieldListItemFactory';
 import React from "react";
 import {ReportFieldUnionType} from "../../config/types";
 import {Card, CardContent, CardHeader} from "semantic-ui-react";

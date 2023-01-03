@@ -29,8 +29,6 @@ function SectionTemplateList(props: {
           injectedSection={section}
           handleSectionChange={props.handleSectionChange}
         />
-
-
       </CardHeader>
       <CardContent className='card-content'>
         <FieldTemplateList
@@ -45,13 +43,9 @@ function SectionTemplateList(props: {
   ));
 
   return (
-    <div>
       <div className="SectionList">
         {sectionElementsList}
       </div>
-
-      <br />
-    </div>
   );
 }
 

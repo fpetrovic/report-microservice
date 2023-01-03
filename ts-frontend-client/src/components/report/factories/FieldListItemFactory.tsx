@@ -1,6 +1,6 @@
 import {Checkbox, Form, Input, Radio, Select, TextArea, Button} from 'semantic-ui-react';
-import {DashboardImportFilter, RecordImportFilter, ReportFieldUnionType} from "../../config/types";
-import {ReportSelectableFieldOption} from "../../interfaces/reportselectablefieldoption";
+import {DashboardImportFilter, RecordImportFilter, ReportFieldUnionType} from "../../../config/types";
+import {ReportSelectableFieldOption} from "../../../interfaces/reportselectablefieldoption";
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 

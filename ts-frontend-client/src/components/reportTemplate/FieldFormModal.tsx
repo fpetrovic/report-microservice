@@ -2,10 +2,13 @@ import React, {useRef, useState} from 'react';
 import {
   Button, Label, Modal
 } from 'semantic-ui-react';
-import FieldInputs from './FieldInputs';
-import {fieldTypeData} from '../Data/FieldTypeData';
+import {fieldTypeData} from '../../api/hardcoded-data/FieldTypeData';
 import {ReportFieldUnionType} from "../../config/types";
 import {Form} from 'formsy-semantic-ui-react';
+import FieldSelectableInput from "./FieldSelectableInput";
+import FieldRecordImportInput from "./FieldRecordImportInput";
+import FieldDashboardInput from "./FieldDashboardInput";
+import {isUniqueName} from "../../config/validation";
 
 interface Props {
   fieldIndex?: number;
@@ -15,6 +18,14 @@ interface Props {
   injectedField?: ReportFieldUnionType;
   fieldList: ReportFieldUnionType[]
 }
+
+const fieldTypeComponents: any = {
+  select: FieldSelectableInput,
+  checkbox: FieldSelectableInput,
+  'record-import': FieldRecordImportInput,
+  dashboard: FieldDashboardInput,
+};
+
 
 const FieldFormModal: React.FC<Props> = ({
                                            trigger,
@@ -108,6 +119,8 @@ const FieldFormModal: React.FC<Props> = ({
     onModalSubmit(field, fieldIndex);
   }
 
+  const FieldSpecificInput: any = field.reportFieldType ? fieldTypeComponents[field.reportFieldType] : undefined;
+
   return (
     <Modal
       onClose={() => setOpen(false)}
@@ -127,34 +140,45 @@ const FieldFormModal: React.FC<Props> = ({
             onValidSubmit={submitFormField}
             id="save-field-form"
           >
-          <Form.Field required>
-          <label>Field Type</label>
-          <Form.Dropdown
-            placeholder="Select Field Type"
-            fluid
-            selection
-            options={fieldTypeData}
-            onChange={handleFieldChange}
-            name="reportFieldType"
-            value={ field.reportFieldType }
-            required
-            validationErrors={{isDefaultRequiredValue: 'Field Type is Required'}}
-            errorLabel={ <Label prompt color="red" pointing="above" /> }
-          />
-          </Form.Field>
+            <Form.Field required>
+              <label>Field Type</label>
+              <Form.Dropdown
+                placeholder="Select Field Type"
+                fluid
+                selection
+                options={fieldTypeData}
+                onChange={handleFieldChange}
+                name="reportFieldType"
+                value={ field.reportFieldType }
+                required
+                validationErrors={{isDefaultRequiredValue: 'Field Type is Required'}}
+                errorLabel={ <Label prompt color="red" pointing="above" /> }
+              />
+            </Form.Field>
 
-          <FieldInputs
-            field={field}
-            fieldIndex={fieldIndex}
-            fieldList={fieldList}
-            handleFieldChange={handleFieldChange}
-            handleItemChange={handleItemChange}
-            handleRemoveItemClick={handleRemoveItemClick}
-            handleAddItemClick={handleAddItemClick}
-            handleFilterChange={handleFilterChange}
-          />
+            <Form.Field required >
+              <label>Field Title </label>
+              <Form.Input
+                value={field.name}
+                onChange={handleFieldChange}
+                placeholder="Please, enter the field title"
+                name="name"
+                required
+                validations={{ isUniqueFieldName: (values, value) => isUniqueName(fieldList, value, fieldIndex ) }}
+                validationErrors={{isDefaultRequiredValue: 'Field Type is Required', isUniqueFieldName: 'Field Title already exists'}}
+                errorLabel={ <Label prompt color="red" pointing="above" /> }
+              />
+            </Form.Field>
 
-
+            {FieldSpecificInput && (
+              <FieldSpecificInput
+                field={field}
+                handleItemChange={handleItemChange}
+                handleRemoveItemClick={handleRemoveItemClick}
+                handleAddItemClick={handleAddItemClick}
+                handleFilterChange={handleFilterChange}
+              />
+            )}
           </Form>
         </Modal.Description>
       </Modal.Content>

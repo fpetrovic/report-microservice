@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import {Button, Card, CardContent, CardHeader, Icon, Label, Message} from 'semantic-ui-react';
 import {Input, Form} from 'formsy-semantic-ui-react';
 import {useLoaderData, useNavigate} from 'react-router-dom';
-import reportTemplateApi from '../../api/reportTemplate';
 import {ReportTemplate as iReportTemplate} from "../../interfaces/reporttemplate";
 import {ReportSection} from "../../interfaces/reportsection";
 import SectionTemplateList from "./SectionTemplateList";
-import {ReportTemplateApiFactory} from "../../api-ts/api/typescript-axios"
+import {ReportTemplateApiFactory} from "../../api/api/typescript-axios"
 import {ReportFieldUnionType} from "../../config/types";
 
 const defaultReportTemplate: iReportTemplate = {
@@ -17,7 +16,7 @@ const defaultReportTemplate: iReportTemplate = {
 // export const loader: ({ params }: LoaderFunctionParameter) => Promise<iReportTemplate> = async ({ params }) => {
 // @ts-ignore
 export const loader = async ({ params }) => {
-  return params.reportTemplateId ? await reportTemplateApi().get(params.reportTemplateId) : Promise.resolve(defaultReportTemplate);
+  return params.reportTemplateId ? await ReportTemplateApiFactory().apiReportTemplatesIdGet(params.reportTemplateId) : Promise.resolve(defaultReportTemplate);
 }
 
 function ReportTemplate() {

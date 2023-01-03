@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Input } from 'semantic-ui-react';
 import { useLoaderData } from 'react-router-dom';
 import SectionList from './SectionList';
-import reportApi from '../../api/report';
+import {ReportApiFactory} from "../../api/api/typescript-axios";
 import {Report as iReport} from "../../interfaces/report";
 
 // export const loader: ({ params }: LoaderFunctionParameter) => Promise<iReport> = async ({ params }) => {
 // @ts-ignore
 export const loader = async ({ params }) => {
-  return await reportApi().get(params.reportId);
+  return await ReportApiFactory().apiReportsIdGet(params.reportId);
 }
 
 function ReportTemplate() {

@@ -1,50 +1,10 @@
 import {Label} from 'semantic-ui-react';
 import {Form, Checkbox, Dropdown} from 'formsy-semantic-ui-react';
-import {ReportField} from "../../interfaces/reportfield";
 import React from "react";
-import {ReportFieldUnionType} from "../../config/types";
 import {ReportFilterField} from "../../interfaces/reportfilterfield";
-
-const fieldCategoriesOptions = [
-  {
-    key: 'health',
-    text: 'Health',
-    value: 'health',
-  },
-  {
-    key: 'security',
-    text: 'Security',
-    value: 'security',
-  },
-  {
-    key: 'catering',
-    text: 'Catering',
-    value: 'catering',
-  },
-];
-
-const fieldDashboardSubtypeOptions = [
-  {
-    key: 'issueByCategoryGroup',
-    text: 'Issue by Category Group',
-    value: 'issueByCategoryGroup',
-  },
-  {
-    key: 'issueByCategory',
-    text: 'Issue by Category',
-    value: 'issueByCategory',
-  },
-  {
-    key: 'issueByPriority',
-    text: 'Issue By Priority',
-    value: 'issueByPriority',
-  },
-  {
-    key: 'issueOverTime',
-    text: 'Issue Over Time',
-    value: 'issueOverTime',
-  },
-];
+import {
+  fieldCategoriesOptions, fieldDashboardSubtypeOptions
+} from "../../api/hardcoded-data/FieldDashboardInputOptions"
 
 interface Props {
   field: ReportFilterField;

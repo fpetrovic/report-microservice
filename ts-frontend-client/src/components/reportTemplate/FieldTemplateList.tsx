@@ -1,6 +1,6 @@
 import {Button, Card, CardHeader, CardContent, Icon} from 'semantic-ui-react';
-import FieldFormModal from '../../ReportTemplate/Component/FieldFormModal';
-import FieldListItemFactory from './../../Report/Component/FieldListItemFactory';
+import FieldFormModal from './FieldFormModal';
+import FieldListItemFactory from '../report/factories/FieldListItemFactory';
 import React from "react";
 import {ReportFieldUnionType} from "../../config/types";
 

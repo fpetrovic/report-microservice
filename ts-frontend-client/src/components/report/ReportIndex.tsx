@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Icon, Input, Menu, Table, Dropdown} from 'semantic-ui-react';
 import {Link, useLoaderData} from 'react-router-dom';
 import {Report} from "../../interfaces/report";
-import {ReportApiFactory, ReportTemplateApiFactory} from "../../api-ts/api/typescript-axios";
+import {ReportApiFactory, ReportTemplateApiFactory} from "../../api/api/typescript-axios";
 import {ReportField} from "../../interfaces/reportfield";
 import ReportFormModal from './ReportFormModal'
 

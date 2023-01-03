@@ -2,9 +2,6 @@ import React, {useRef, useState} from 'react';
 import {
   Button, Label, Modal
 } from 'semantic-ui-react';
-import FieldInputs from './FieldInputs';
-import {fieldTypeData} from '../Data/FieldTypeData';
-import {ReportFieldUnionType} from "../../config/types";
 import {Form} from 'formsy-semantic-ui-react';
 import {isUniqueName} from "../../config/validation";
 import {ReportSection} from "../../interfaces/reportsection";
@@ -23,7 +20,6 @@ const FieldFormModal: React.FC<Props> = ({
                                            injectedSection,
                                            sectionIndex,
                                            sectionList,
-                                           handleSectionChange,
                                            onModalSubmit
                                          }) => {
   const [open, setOpen] = useState(false);
@@ -36,7 +32,7 @@ const FieldFormModal: React.FC<Props> = ({
   }
 
   const handleEditSectionTitle = (e: any, data: any) => {
-    const { name, value } = data;
+    const { value } = data;
     setEditingSectionTitle(value)
   }
 
