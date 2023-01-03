@@ -5,7 +5,7 @@ export interface ReportSection {
   name?: string;
   report?: any;
   reportFields?: ReportField[];
-  sortOrder?: number;
+  position?: number;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;

@@ -28,5 +28,4 @@ class GenerateReportFromTemplateController extends AbstractController
 
         return $newlyCreatedReport;
     }
-
 }

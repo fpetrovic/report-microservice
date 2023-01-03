@@ -9,17 +9,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 trait Sortable
 {
-    #[Column(type: 'integer', nullable: false)]
+    #[Column(type: 'integer')]
     #[Groups(['sortable'])]
-    private int $sortOrder;
+    private int $position;
 
-    public function getSortOrder(): int
+    public function getPosition(): int
     {
-        return $this->sortOrder;
+        return $this->position;
     }
 
-    public function setSortOrder(int $sortOrder): void
+    public function setPosition(int $position): void
     {
-        $this->sortOrder = $sortOrder;
+        $this->position = $position;
     }
 }

@@ -10,7 +10,6 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
-use App\State\ReportTemplateStateProcessor;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -19,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     normalizationContext: ['groups' => [
         'baseReport:item:read',
-        "reportTemplate:item:read",
+        'reportTemplate:item:read',
         'timestampable',
         'sortable',
         'id',
@@ -40,19 +39,19 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     ],
 )]
-#[Post(processor: ReportTemplateStateProcessor::class)]
+#[Post()]
 #[Get()]
-#[Put(processor: ReportTemplateStateProcessor::class)]
+#[Put()]
 #[Delete()]
 #[Entity]
 class ReportTemplate extends BaseReport
 {
-    #[Column(type: 'string', length: 255, nullable: false)]
+    #[Column(type: 'string', length: 255)]
     #[Assert\Length(min: 2, max: 255)]
     #[Groups(['reportTemplate:item:read', 'reportTemplate:item:write'])]
     private string $description;
 
-    #[Column(type: 'string', length: 255, nullable: false)]
+    #[Column(type: 'string', length: 255)]
     #[Assert\Length(min: 2, max: 255)]
     #[Groups(['reportTemplate:item:read', 'reportTemplate:item:write'])]
     private string $supportingText;

@@ -11,6 +11,7 @@ use App\Entity\Trait\IdTrait;
 use App\Entity\Trait\SoftDeletableProperties;
 use App\Entity\Trait\Sortable;
 use App\Entity\Trait\TimestampableProperties;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
@@ -18,6 +19,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -26,16 +28,15 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => [
         'reportField:item:read',
         'sortable',
-        'id'
-    ]
+        'id',
+    ],
     ],
     denormalizationContext: ['groups' => ['reportField:item:write', 'sortable', 'id']],
 )]
 #[GetCollection()]
 #[Get()]
-
 #[Entity]
-#[InheritanceType('JOINED')]
+#[InheritanceType('SINGLE_TABLE')]
 #[DiscriminatorColumn(name: 'entity_type', type: 'string')]
 #[DiscriminatorMap(
     [
@@ -45,6 +46,11 @@ use Symfony\Component\Validator\Constraints as Assert;
         'reportFileField' => 'ReportFileField',
     ]
 )]
+#[UniqueEntity(
+    fields: ['section', 'name'],
+    message: 'This name already exists in this section.',
+    errorPath: 'name',
+)]
 class ReportField
 {
     use IdTrait;
@@ -52,15 +58,14 @@ class ReportField
     use SoftDeletableProperties;
     use Sortable;
 
-    /* @todo make this field unique in combination with section id */ // I would need report id if it is on report level
-    #[Column(type: 'string', length: 255, nullable: false)]
-    #[Groups(['reportField:item:read', 'reportField:item:write', 'reportTemplate:item:read', 'reportTemplate:item:write'])]
+    #[Column(type: 'string', length: 255)]
+    #[Groups(['reportField:item:read', 'reportField:item:write', 'baseReport:item:read', 'reportTemplate:item:write'])]
     #[Assert\Length(min: 2, max: 255)]
     private string $name;
 
     // this field should be enum at least assert should be enum
-    #[Column(type: 'string', length: 255, nullable: false)]
-    #[Groups(['reportField:item:read', 'reportField:item:write', 'reportTemplate:item:read', 'reportTemplate:item:write'])]
+    #[Column(type: 'string', length: 255)]
+    #[Groups(['reportField:item:read', 'reportField:item:write', 'baseReport:item:read', 'reportTemplate:item:write'])]
     private string $reportFieldType;
 
     #[ManyToOne(targetEntity: ReportSection::class, inversedBy: 'reportFields')]

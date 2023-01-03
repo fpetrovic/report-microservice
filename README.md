@@ -1,3 +1,14 @@
+<h1>Setup Reports App</h1>
+
+Download the latest versions of the images:
+`docker compose pull --include-deps`
+Then build images and Start Docker Compose in detached mode:
+`docker compose up --wait`
+Start the client:
+`cd ts-frontend-client && npm run start`
+
+<h1>Api Platform Docs</h1>
+
 <h1 align="center"><a href="https://api-platform.com"><img src="https://api-platform.com/logo-250x250.png" alt="API Platform"></a></h1>
 
 API Platform is a next-generation web framework designed to easily create API-first projects without compromising extensibility

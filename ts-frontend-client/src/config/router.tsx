@@ -1,11 +1,11 @@
 import {createBrowserRouter} from "react-router-dom";
-import Home from "../Common/Page/Home";
+import Home from "../pages/home/Home";
 import ReportTemplateIndex, {
     loader as reportTemplatesLoader
-} from "../ReportTemplate/Component/ReportTemplateIndex";
-import ReportTemplate, {loader as reportTemplateLoader} from "../ReportTemplate/Component/ReportTemplate";
-import ReportIndex, {loader as reportsLoader} from "../Report/Component//ReportIndex";
-import Report, {loader as reportLoader} from "../Report/Component/Report";
+} from "../components/report/reportTemplate/ReportTemplateIndex";
+import ReportTemplate, {loader as reportTemplateLoader} from "../components/report/reportTemplate/ReportTemplate";
+import ReportIndex, {loader as reportsLoader} from "../components/report/report/ReportIndex";
+import Report, {loader as reportLoader} from "../components/report/report/Report";
 import React from "react";
 
 const router = createBrowserRouter([

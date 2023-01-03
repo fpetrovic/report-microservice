@@ -9,10 +9,7 @@ use App\Entity\Trait\IdTrait;
 use App\Entity\Trait\SoftDeletableProperties;
 use App\Entity\Trait\TimestampableProperties;
 use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\DiscriminatorColumn;
-use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\Table;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -20,10 +17,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => ['record:read']],
     denormalizationContext: ['groups' => ['record:write']],
 )]
-#[Table('rcd_record')]
-#[InheritanceType('JOINED')]
-#[DiscriminatorColumn(name: 'entity_type', type: 'string')]
-#[DiscriminatorMap(['issue' => Issue::class, 'checklist' => Checklist::class, 'note' => Note::class])]
 #[Entity]
 class Record
 {
@@ -31,7 +24,7 @@ class Record
     use TimestampableProperties;
     use SoftDeletableProperties;
 
-    #[Column(type: 'string', length: 255, nullable: false)]
-    #[Groups(['record:read', 'record:write'])]
+    #[Column(type: 'string', length: 255)]
+//    #[Groups(['record:read', 'record:write', 'baseReport:item:read'])]
     private string $name;
 }

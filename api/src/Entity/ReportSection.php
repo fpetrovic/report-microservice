@@ -21,6 +21,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\OrderBy;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -41,7 +42,7 @@ class ReportSection
     use TimestampableProperties;
     use SoftDeletableProperties;
 
-    #[Column(type: 'string', length: 255, nullable: false)]
+    #[Column(type: 'string', length: 255)]
     #[Groups(['baseReport:item:read', 'baseReport:item:write'])]
     #[Assert\Length(min: 2, max: 255)]
     private string $name;
@@ -54,6 +55,7 @@ class ReportSection
      * @var Collection<int, ReportField>
      * */
     #[OneToMany(mappedBy: 'section', targetEntity: ReportField::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[OrderBy(['position' => 'ASC'])]
     #[Groups(['baseReport:item:read', 'reportTemplate:item:write'])]
     #[Assert\Valid]
     private Collection $reportFields;

@@ -11,10 +11,14 @@ use App\Entity\Trait\Sortable;
 use App\Entity\Trait\TimestampableProperties;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\Table;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource]
 #[Entity]
+#[Table(name: 'report_field_option')]
 class ReportSelectableFieldOption
 {
     use TimestampableProperties;
@@ -22,12 +26,16 @@ class ReportSelectableFieldOption
     use IdTrait;
     use Sortable;
 
-    #[Column(type: 'string', length: 255, nullable: false)]
-    #[Groups(['reportField:read', 'reportField:write', 'baseReport:item:read', 'baseReport:item:write'])]
+    #[Column(type: 'string', length: 255)]
+    #[Groups(['reportSelectableField:read', 'reportSelectableField:write', 'baseReport:item:read', 'baseReport:item:write'])]
     private string $name;
 
-    #[Column(type: 'boolean', nullable: false)]
-    #[Groups(['reportField:read', 'reportField:write', 'report:item:read', 'report:item:write'])]
+    #[ManyToOne(targetEntity: ReportSelectableField::class, inversedBy: 'reportSelectableFieldOptions')]
+    #[JoinColumn(name: 'report_selectable_field_id', referencedColumnName: 'id')]
+    private ReportSelectableField $reportSelectableField;
+
+    #[Column(type: 'boolean')]
+    #[Groups(['reportSelectableField:read', 'reportSelectableField:write', 'report:item:read', 'report:item:write'])]
     private bool $isSelected = false;
 
     public function getName(): string
@@ -48,5 +56,15 @@ class ReportSelectableFieldOption
     public function setIsSelected(bool $isSelected): void
     {
         $this->isSelected = $isSelected;
+    }
+
+    public function getReportSelectableField(): ReportSelectableField
+    {
+        return $this->reportSelectableField;
+    }
+
+    public function setReportSelectableField(ReportSelectableField $reportSelectableField): void
+    {
+        $this->reportSelectableField = $reportSelectableField;
     }
 }

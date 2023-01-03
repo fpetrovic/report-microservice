@@ -30,7 +30,7 @@ class BaseReport
     use TimestampableProperties;
     use SoftDeletableProperties;
 
-    #[Column(type: 'string', length: 255, nullable: false)]
+    #[Column(type: 'string', length: 255)]
     #[Assert\Length(min: 2, max: 255)]
     #[Groups(['baseReport:list', 'baseReport:item:read', 'baseReport:item:write'])]
     private string $name;

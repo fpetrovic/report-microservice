@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Put;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\OneToMany;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
@@ -25,10 +26,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[Entity]
 class ReportSelectableField extends ReportField
 {
-
-    #[Groups(['baseReport:item:read', 'baseReport:item:write'])]
+    #[OneToMany(mappedBy: 'reportSelectableField', targetEntity: ReportSelectableFieldOption::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[Groups(['reportField:item:read', 'reportField:item:write', 'baseReport:item:read', 'reportTemplate:item:write'])]
     /**
-     * @var Collection<int, ReportSelectableFieldOption> $reportSelectableFieldOption
+     * @var Collection<int, ReportSelectableFieldOption>
      * */
     private Collection $reportSelectableFieldOptions;
 
@@ -41,6 +42,7 @@ class ReportSelectableField extends ReportField
     {
         if (!$this->reportSelectableFieldOptions->contains($reportSelectableFieldOption)) {
             $this->reportSelectableFieldOptions[] = $reportSelectableFieldOption;
+            $reportSelectableFieldOption->setReportSelectableField($this);
         }
 
         return $this;
@@ -59,13 +61,5 @@ class ReportSelectableField extends ReportField
     public function getReportSelectableFieldOptions(): Collection
     {
         return $this->reportSelectableFieldOptions;
-    }
-
-    /**
-     * @param Collection<int, ReportSelectableFieldOption> $reportSelectableFieldOptions
-     */
-    public function setReportSelectableFieldOptions(Collection $reportSelectableFieldOptions): void
-    {
-        $this->reportSelectableFieldOptions = $reportSelectableFieldOptions;
     }
 }

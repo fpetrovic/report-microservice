@@ -43,7 +43,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     controller: GenerateReportFromTemplateController::class,
     denormalizationContext: ['groups' => [
         'report:item:write',
-        'report:item:generate-from-template:write'
+        'report:item:generate-from-template:write',
     ]],
     read: false,
     name: 'generate-from-template'
@@ -94,5 +94,4 @@ class Report extends BaseReport
     {
         $this->reportTemplateToGenerateFrom = $reportTemplateToGenerateFrom;
     }
-
 }

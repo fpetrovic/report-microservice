@@ -7,6 +7,6 @@ export interface ReportBasicField {
   name?: string;
   reportFieldType?: string;
   section?: string;
-  sortOrder?: number;
+  position?: number;
   readonly deleted?: boolean;
 }

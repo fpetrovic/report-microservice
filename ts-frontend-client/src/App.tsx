@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import PageLayout from "./Common/Layout/PageLayout";
+import PageLayout from "./components/commonLayout/PageLayout";
 import { RouterProvider } from 'react-router-dom';
 import router from "./config/router";
 

@@ -9,6 +9,8 @@ export interface ReportFilterField {
   name?: string;
   reportFieldType?: string;
   section?: string;
-  sortOrder?: number;
+  position?: number;
   readonly deleted?: boolean;
+  records?: any[]
+  recordsExcluded?: any[]
 }

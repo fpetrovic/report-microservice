@@ -9,17 +9,22 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Uid\Uuid;
 
 trait IdTrait
 {
     #[ Id,
-        Column(type: "bigint", nullable: false, options: ['unsigned' => false]),
-        GeneratedValue(strategy: "IDENTITY")]
+        Column(type: 'bigint', nullable: false, options: ['unsigned' => false]),
+        GeneratedValue()]
     #[Groups(['id'])]
-    private string $id;
+    private ?string $id = null;
+
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    public function setId(?string $id): void
+    {
+        $this->id = $id;
     }
 }

@@ -7,15 +7,15 @@ export type FilterUnionType = RecordImportFilter | DashboardImportFilter
 export interface RecordImportFilter {
     type: string,
     status: string,
-    priorities: {id: string, name: string}[],
-    categories: {id: string, name: string}[],
-    locations: {id: string, name: string}[]
+    priorities: {id: string, value: string}[],
+    categories: {id: string, value: string}[],
+    locations: {id: string, value: string}[],
 }
 
 export interface DashboardImportFilter {
   type: string,
   category: string,
-  categoryGroups: {id: string, name: string}[]
+  categoryGroups: {id: string, value: string}[]
   isShowCategoriesWithNoIssues: boolean
 
   status: string

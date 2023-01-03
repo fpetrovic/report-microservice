@@ -10,7 +10,7 @@ body, html {
 }
 
 .full-screen-height {
-    min-height: 63.2em;
+    min-height: 67.7em;
 
 }
 
@@ -27,14 +27,14 @@ body, html {
     color:gray !important;
 }
 
-.contentHolder {
+.pusher {
     justify-content: center;
-    display: flex;
+    width:90% !important;
 }
 
 .card-style {
-    min-width: 85em !important;
-    margin-top:3em !important;
+    /*min-width: 85em !important;*/
+    margin-top:2em !important;
 }
 
 .card-content {
@@ -43,6 +43,7 @@ body, html {
 
 .card-content-field {
     min-height: 5em !important;
+    border:none !important;
 }
 
 .add-report-field-button-div-wrapper {
@@ -58,7 +59,6 @@ body, html {
     margin-top: 2em !important;
 }
 
-
 .save-button {
     float: right;
     margin-bottom: 1.5em !important;
@@ -71,5 +71,17 @@ body, html {
     padding-left:0.5em ;
 }
 
+.container {
+    width:100% !important;
+}
 
+.empty-table-message {
+    margin-top:1em !important;
+    margin-bottom:1em !important;
+    margin-left:0.5em;
+    justify-content: center !important;
+}
 
+.add-section-button {
+    margin-bottom:4em !important;
+}

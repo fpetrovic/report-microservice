@@ -4,6 +4,7 @@ namespace App\Entity\Enum;
 
 use App\Entity\ReportBasicField;
 use App\Entity\ReportField;
+use App\Entity\ReportFileField;
 use App\Entity\ReportFilterField;
 use App\Entity\ReportSelectableField;
 
@@ -32,19 +33,16 @@ enum ReportFieldTypeEnum: string
     /**
      * @throws \Exception
      */
-    public static function getReportFieldEntityType(string $reportFieldType): ReportField
+    public static function getReportFieldEntityType(string $reportFieldType): string
     {
         return match ($reportFieldType) {
             ReportFieldTypeEnum::shortText->value,
             ReportFieldTypeEnum::longText->value,
             ReportFieldTypeEnum::date->value,
-            ReportFieldTypeEnum::time->value,
-            ReportFieldTypeEnum::file->value,
-            ReportFieldTypeEnum::radio->value => new ReportBasicField(),
-            ReportFieldTypeEnum::checkbox->value,
-            ReportFieldTypeEnum::select->value => new ReportSelectableField(),
-            ReportFieldTypeEnum::recordImport->value,
-            ReportFieldTypeEnum::dashboardImport->value => new ReportFilterField(),
+            ReportFieldTypeEnum::time->value => (new ReportBasicField())::class,
+            ReportFieldTypeEnum::file->value => (new ReportFileField())::class,
+            ReportFieldTypeEnum::radio->value, ReportFieldTypeEnum::checkbox->value, ReportFieldTypeEnum::select->value => (new ReportSelectableField())::class,
+            ReportFieldTypeEnum::recordImport->value, ReportFieldTypeEnum::dashboardImport->value => (new ReportFilterField())::class,
             default => throw new \Exception('Unexpected match value'),
         };
     }

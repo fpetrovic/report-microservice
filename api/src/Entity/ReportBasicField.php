@@ -28,12 +28,12 @@ class ReportBasicField extends ReportField
     #[Groups(['report:item:write', 'baseReport:item:read'])]
     private ?string $textValue = null;
 
-    public function getTextValue(): string
+    public function getTextValue(): ?string
     {
         return $this->textValue;
     }
 
-    public function setTextValue(string $textValue): void
+    public function setTextValue(?string $textValue): void
     {
         $this->textValue = $textValue;
     }
